@@ -1,0 +1,189 @@
+body {
+  background-color: grey;
+  overflow: hidden;
+}
+
+#gamefield {
+  border: 1px solid chartreuse;
+  width: fit-content;
+  display: grid;
+}
+
+#background {
+  grid-area: 1/1;
+  display: grid;
+  grid-template-columns: repeat(var(--GRID_WIDTH), max-content);
+}
+
+#background .tile {
+  width: var(--TILE_SIZE);
+  aspect-ratio: 1/1;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  image-rendering: pixelated;
+}
+
+#items {
+  grid-area: 1 / 1;
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(var(--GRID_WIDTH), var(--TILE_SIZE));
+  grid-template-rows: repeat(var(--GRID_HEIGHT), var(--TILE_SIZE));
+}
+
+.item {
+  width: var(--TILE_SIZE);
+  aspect-ratio: 1 / 1;
+  background-size: 100%;
+  image-rendering: pixelated;
+  
+  grid-area: calc(var(--row) + 1) / calc(var(--col) + 1);}
+
+.item.gold {
+  background-image: url(/simple-assets/images/items/gold.png);
+}
+
+#characters {
+  grid-area: 1/1;
+}
+
+@keyframes down {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: -400% 0%;
+  }
+}
+
+@keyframes up {
+  from {
+    background-position: 0% 300%;
+  }
+  to {
+    background-position: -400% 300%;
+  }
+}
+
+@keyframes right {
+  from {
+    background-position: 0% 100%;
+  }
+  to {
+    background-position: -400% 100%;
+  }
+}
+
+@keyframes left {
+  from {
+    background-position: 0% 200%;
+  }
+  to {
+    background-position: -400% 200%;
+  }
+}
+
+#player.animate {
+  animation-duration: 1s;
+  animation-timing-function: steps(4);
+  animation-iteration-count: infinite;
+}
+
+#player.down {
+  background-position: 0% 0%;
+  animation-name: down;
+}
+
+#player.right {
+  background-position: 0% 100%;
+  animation-name: right;
+}
+
+#player.up {
+  background-position: 0% 300%;
+  animation-name: up;
+}
+
+#player.left {
+  background-position: 0% 200%;
+  animation-name: left;
+}
+
+#player {
+  width: 32px;
+  aspect-ratio: 16 / 20;
+  background-image: url("Characters/Character\ 11.png");
+  background-size: 400% 400%;
+  image-rendering: pixelated;
+}
+
+.tile.grass {
+  background-image: url(simple-assets/images/tiles/grass.png);
+}
+
+.tile.plank {
+  background-image: url(simple-assets/images/tiles/floor_planks.png);
+}
+
+.tile.tree {
+  background-image: url(simple-assets/images/tiles/tree.png);
+}
+
+.tile.path {
+  background-image: url(simple-assets/images/tiles/path.png);
+}
+
+.tile.flowers {
+  background-image: url(simple-assets/images/tiles/flowers.png);
+}
+
+.tile.wall {
+  background-image: url(simple-assets/images/tiles/wall.png);
+}
+
+.tile.well {
+  background-image: url(simple-assets/images/tiles/well.png);
+}
+
+.tile.carpet {
+  background-image: url(simple-assets/images/tiles/floor_carpet.png);
+}
+
+.tile.door {
+  background-image: url(simple-assets/images/tiles/door.png);
+}
+
+.tile.water {
+  background-image: url(simple-assets/images/tiles/water.png);
+}
+
+.highlight {
+  outline: 2px dashed yellow;
+  translate: 0 0;
+}
+
+.show-rect {
+  outline: 2px solid red;
+}
+
+.show-reg-point::before {
+  content: "";
+  position: absolute;
+  background-color: cyan;
+
+  width: 3px;
+  height: 3px;
+
+  translate: var(--regX) var(--regY);
+}
+
+/* .show-hitbox::after {
+  content: "";
+  position: absolute;
+  background-color: purple;
+
+  width: var(--HITBOX_WIDTH);
+  height: var(--HITBOX_HEIGHT);
+
+  translate: var(--HITBOX_X) var(--HITBOX_Y);
+} */
